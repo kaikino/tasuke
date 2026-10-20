@@ -1,0 +1,26 @@
+[project]
+name = "tasuke"
+version = "0.1.0"
+description = "Local-LLM CLI assistant that troubleshoots by actually running commands on your machine. Fully offline."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "rich>=13.7",
+    "httpx>=0.27",
+    "prompt_toolkit>=3.0.43",
+]
+
+[project.scripts]
+tasuke = "tasuke.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tasuke"]
+include = ["tasuke/shell/*.zsh", "tasuke/shell/*.bash"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
